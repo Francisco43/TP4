@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} " />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<title>Ventas</title>
+	
+</head>
+
+<body class="bodyv">
+	<div class="container">
+		<div th:insert="layouts/header :: header"></div>
+		<div class="row col-md-12">
+			<div th:each="c : ${productos}">
+				<div class="col-md-4">
+					<div class="card" style="width: 18rem;">
+						<img src="https://imagenes.heraldo.es/files/image_990_v1/uploads/imagenes/2016/03/31/_1637871958157a68e1e3ez_df000045.jpg" alt="hola">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${c.nombre}">Nombre</h5>
+							<p class="card-text" th:text="${'Cod. de producto - ' + c.codProducto}">Id</p>
+							<p class="card-text" th:text="${'Precio - ' + c.precio}">Precio</p>
+							<p class="card-text" th:text="${'Descripcion - ' + c.descripcion}">Descripcion</p>
+							<a class="stretched-link btn btn-primary link-vender" th:href="@{'/producto/vender/'+${c.codProducto}}"><i
+									class="fas fa-shopping-cart mr-2"></i>Comprar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--Modal Editar-->
+		<div class="modal fade" id="modalVender" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" >
+				<div class="modal-content">
+				
+				</div>
+			</div>
+		</div>
+		
+		<div th:insert="layouts/footer :: footer"></div>
+	</div>
+
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript"
+		src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript"
+		src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() { $(".link-vender").on("click", function(event) {
+									event.preventDefault();
+									$("#modalVender").modal("show").find(".modal-content").load($(this).attr("href"));
+								});
+					});
+	</script>
+</body>
+
+</html>

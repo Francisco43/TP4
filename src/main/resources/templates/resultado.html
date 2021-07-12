@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Listado Productos</title>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css}">
+</head>
+
+<body class="fondo text-white">
+
+
+	<div class="container">
+		<div class="micontainer">
+			<div th:insert="layouts/header :: header"></div>
+
+			<br>
+
+			<br>
+			<h2 class="text-center">Listado de productos</h2>
+			<br>
+	<div class="row d-flex justify-content-center">
+				<div th:each="producto : ${productos}" class="col-md-4">
+					<div class="card mb-5" style="width: 100%;">
+						<div class="card-header">
+							<img th:src="@{/img/producto.png}" alt="" class="container-fluid">
+						</div>
+						<div class="card-body">
+							<p>Codigo: <span th:text="${producto.codigo}"></span></p>
+							<p>Nombre: <span th:text="${producto.nombre}"></span></p>
+							<p>Precio: <span th:text="${producto.precio}"></span></p>
+							<p>Marca: <span th:text="${producto.marca}"></span></p>
+							<p>Stock: <span th:text="${producto.stock}"></span></p>
+							<p><a th:href="@{'/producto/editar/'+${producto.codigo}}"><i class="fa fa-edit"></i></a> <a th:href="@{'/producto/eliminar/'+${producto.codigo}}"><i
+									class="fas fa-trash-alt"></i></a></p>
+						<p></p>
+							<div class="text-center">
+								<a href="#" class="btn btn-success text-light">Comprar</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<br>
+			<button class="boton">
+						<a th:href="@{/ultimo-producto}">Mostrar ultimo producto</a>
+					</button>
+			<br>
+				<button class="boton">
+			<a  th:href="@{/volver}">Volver a cargar un producto</a>
+			</button>
+		</div>
+		<div th:insert="layouts/footer :: footer"></div>
+
+	</div>
+
+
+
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript"
+		src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript"
+		src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
