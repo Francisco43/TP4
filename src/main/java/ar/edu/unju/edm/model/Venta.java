@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ public class Venta {
 	@ManyToOne 
 	@JoinColumn(name = "idCliente")
 	private Cliente cliente;
+	@CreationTimestamp
 	@Column
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaVenta;
@@ -57,7 +59,7 @@ public class Venta {
 	public LocalDate getFechaVenta() {
 		return fechaVenta;
 	}
-
+	
 	public void setFechaVenta(LocalDate fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
